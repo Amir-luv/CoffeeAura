@@ -12,10 +12,8 @@ services:
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9093
       KAFKA_LISTENER_NAME_INNER: INSIDE
       KAFKA_LISTENER_PORT: 9093
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_INTER_BROKER_SECURITY_PROTOCOL: PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
   # Zookeeper сервис (необходим для работы Kafka)
@@ -29,10 +27,10 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_DB: db_CoffeMenu
-      POSTGRES_USER: your_username
-      POSTGRES_PASSWORD: your_password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Escape1?
     ports:
-      - "5432:5432"
+      - "1337:1337"
 
   # Ваше Spring Boot приложение
   app:
@@ -43,7 +41,7 @@ services:
       - kafka
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db_CoffeMenu
-      SPRING_DATASOURCE_USERNAME: your_username
-      SPRING_DATASOURCE_PASSWORD: your_password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:1337/db_CoffeMenu
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Escape1?
       SPRING_KAFKA_BOOTSTRAP-SERVERS: kafka:9093
