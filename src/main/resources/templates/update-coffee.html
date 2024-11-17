@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Coffee</title>
+</head>
+<body>
+<h1>Update Coffee</h1>
+
+<!-- Форма для обновления информации о кофе -->
+<form th:action="@{/coffees/update/{id}(id=${coffee.id})}" th:object="${coffee}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name" required />
+
+    <label for="price">Price:</label>
+    <input type="number" th:field="*{price}" id="price" required />
+
+    <button type="submit">Update Coffee</button>
+</form>
+
+<!-- Ссылка для возврата на страницу меню кофе -->
+<a href="/coffees">Back to Menu</a>
+</body>
+</html>

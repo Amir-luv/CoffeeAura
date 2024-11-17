@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Menu of Coffees</title>
+</head>
+<body>
+<h1>Menu of Coffees</h1>
+
+<!-- Список всех кофе -->
+<ul>
+  <li th:each="coffee : ${coffees}">
+    <span th:text="${coffee.name}">Coffee Name</span> - <span th:text="${coffee.price}">Price</span>
+
+    <!-- Кнопки для изменения и удаления кофе -->
+    <a th:href="@{/coffees/update/{id}(id=${coffee.id})}">Edit</a>
+    <a th:href="@{/coffees/delete/{id}(id=${coffee.id})}" onclick="return confirm('Are you sure you want to delete this coffee?')">Delete</a>
+  </li>
+</ul>
+
+<!-- Кнопка для добавления нового кофе -->
+<a href="/coffees/add">Add New Coffee</a>
+
+</body>
+</html>
